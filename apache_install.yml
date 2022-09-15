@@ -3,15 +3,18 @@
   become: true
   tasks:
   - name: update repository index
-      yum: 
+    yum: 
         update_cache: yes
+    when: ansible_distribution == "CentOS"
 
   - name: install apache
     yum:
       name: apache2
       state: latest
+    when: ansible_distribution == "CentOS"
 
   - name: add php support for apache
     yum:
       name: libapache2-mod-php
       state: latest
+    when: ansible_distribution == "CentOS"
